@@ -1,0 +1,143 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  serverless-triage-api
+
+Transform:
+- AWS::Serverless-2016-10-31
+
+Globals:
+  Function:
+    Tracing: Active
+  Api:
+    TracingEnabled: True
+
+Resources:
+  getAllPatients:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/getAllPatients.getAllPatientsHandler
+      Runtime: nodejs16.x
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 100
+      Description: Returns an array of all patients registered with the emergency department.
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref PatientTable
+      Environment:
+        Variables:
+          PATIENT_TABLE: !Ref PatientTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /patients/
+            Method: GET
+
+  getPatientById:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/get-by-id.getPatientByIdHandler
+      Runtime: nodejs16.x
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 100
+      Description: Returns an object with properties that contain all patient information.
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref PatientTable
+      Environment:
+        Variables:
+          PATIENT_TABLE: !Ref PatientTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /patient/{id}
+            Method: GET
+
+  editPatientFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/editPatient.editPatientHandler
+      Runtime: nodejs16.x
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 100
+      Description: Receives a PUT request with JSON body to update the patient record.
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref PatientTable
+      Environment:
+        Variables:
+          PATIENT_TABLE: !Ref PatientTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /patient/{id}
+            Method: PUT
+
+  createPatientFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/createPatient.createPatientHandler
+      Runtime: nodejs16.x
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 100
+      Description: Receives a POST request with JSON body to create a patient record.
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref PatientTable
+      Environment:
+        Variables:
+          PATIENT_TABLE: !Ref PatientTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /patient/{id}
+            Method: POST
+
+  deletePatientFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/deletePatient.deletePatientHandler
+      Runtime: nodejs16.x
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 100
+      Description: Receives a DELETE request to delete a patient record.
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref PatientTable
+      Environment:
+        Variables:
+          PATIENT_TABLE: !Ref PatientTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /patient/{id}
+            Method: PUT
+
+  PatientTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      PrimaryKey:
+        Name: id
+        Type: String
+      ProvisionedThroughput:
+        ReadCapacityUnits: 2
+        WriteCapacityUnits: 2
+
+Outputs:
+  WebEndpoint:
+    Description: "API Gateway endpoint URL for Prod stage"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/prod/"
