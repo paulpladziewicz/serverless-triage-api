@@ -3,7 +3,7 @@ const docClient = new dynamodb.DocumentClient();
 
 const tableName = process.env.PATIENT_TABLE;
 
-exports.putItemHandler = async (event) => {
+exports.deletePatientHandler = async (event) => {
     if (event.httpMethod !== 'DELETE') {
       throw new Error(`deleteMethod only accepts DELETE method, you tried: ${event.httpMethod} method.`);
     }

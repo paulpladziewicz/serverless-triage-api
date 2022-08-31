@@ -3,7 +3,7 @@ const docClient = new dynamodb.DocumentClient();
 
 const tableName = process.env.PATIENT_TABLE;
 
-exports.putItemHandler = async (event) => {
+exports.editPatientHandler = async (event) => {
     if (event.httpMethod !== 'PUT') {
         throw new Error(`putMethod only accepts PUT method, you tried: ${event.httpMethod} method.`);
     }

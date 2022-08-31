@@ -38,7 +38,7 @@ Resources:
   getPatientById:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: src/handlers/get-by-id.getPatientByIdHandler
+      Handler: src/handlers/getPatientById.getPatientByIdHandler
       Runtime: nodejs16.x
       Architectures:
         - x86_64
