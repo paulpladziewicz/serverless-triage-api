@@ -78,7 +78,7 @@ Resources:
         Api:
           Type: Api
           Properties:
-            Path: /patient/{id}
+            Path: /patient/
             Method: PUT
 
   createPatientFunction:
@@ -101,7 +101,7 @@ Resources:
         Api:
           Type: Api
           Properties:
-            Path: /patient/{id}
+            Path: /patient/
             Method: POST
 
   deletePatientFunction:

@@ -10,7 +10,6 @@ exports.putItemHandler = async (event) => {
   console.info('received:', event);
 
   const body = JSON.parse(event.body);
-  const id = body.id;
   const dob = body.dob;
   const complaint = body.complaint;
   const priority = body.priority;
@@ -19,7 +18,7 @@ exports.putItemHandler = async (event) => {
 
   const params = {
     TableName : tableName,
-    Item: { id, name, dob, complaint, priority, room, stage}
+    Item: { name, dob, complaint, priority, room, stage}
   };
 
   const result = await docClient.put(params).promise();
