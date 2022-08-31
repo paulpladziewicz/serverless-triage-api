@@ -1,3 +1,5 @@
+const { v4: uuidv4 } = require('uuid');
+
 const dynamodb = require('aws-sdk/clients/dynamodb');
 const docClient = new dynamodb.DocumentClient();
 
@@ -10,6 +12,7 @@ exports.createPatientHandler = async (event) => {
   console.info('received:', event);
 
   const body = JSON.parse(event.body);
+  const id = uuidv4();
   const name = body.name;
   const dob = body.dob;
   const complaint = body.complaint;
@@ -19,7 +22,7 @@ exports.createPatientHandler = async (event) => {
 
   const params = {
     TableName : tableName,
-    Item: { name, dob, complaint, priority, room, stage}
+    Item: { id, name, dob, complaint, priority, room, stage}
   };
 
   const result = await docClient.put(params).promise();
