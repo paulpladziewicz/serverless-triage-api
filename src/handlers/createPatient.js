@@ -10,6 +10,7 @@ exports.createPatientHandler = async (event) => {
   console.info('received:', event);
 
   const body = JSON.parse(event.body);
+  const name = body.name;
   const dob = body.dob;
   const complaint = body.complaint;
   const priority = body.priority;
