@@ -11,18 +11,24 @@ exports.putItemHandler = async (event) => {
 
   const body = JSON.parse(event.body);
   const id = body.id;
-  const name = body.name;
+  const dob = body.dob;
+  const complaint = body.complaint;
+  const priority = body.priority;
+  const room = body.room;
+  const stage = body.stage;
 
   const params = {
     TableName : tableName,
-    Item: { id : id, name: name }
+    Item: { id, name, dob, complaint, priority, room, stage}
   };
 
   const result = await docClient.put(params).promise();
 
   const response = {
-    statusCode: 200,
-    body: JSON.stringify(body)
+    statusCode: 201,
+    body: JSON.stringify({
+      message: 'patient record successfully created'
+    })
   };
 
   console.info(`response from: ${event.path} statusCode: ${response.statusCode} body: ${response.body}`);

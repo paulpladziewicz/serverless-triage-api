@@ -4,25 +4,31 @@ const docClient = new dynamodb.DocumentClient();
 const tableName = process.env.PATIENT_TABLE;
 
 exports.putItemHandler = async (event) => {
-    if (event.httpMethod !== 'POST') {
-        throw new Error(`postMethod only accepts POST method, you tried: ${event.httpMethod} method.`);
+    if (event.httpMethod !== 'PUT') {
+        throw new Error(`putMethod only accepts PUT method, you tried: ${event.httpMethod} method.`);
     }
     console.info('received:', event);
 
     const body = JSON.parse(event.body);
     const id = body.id;
-    const name = body.name;
+    const dob = body.dob;
+    const complaint = body.complaint;
+    const priority = body.priority;
+    const room = body.room;
+    const stage = body.stage;
 
     const params = {
         TableName : tableName,
-        Item: { id : id, name: name }
+        Item: { id, name, dob, complaint, priority, room, stage}
     };
 
     const result = await docClient.put(params).promise();
 
     const response = {
         statusCode: 200,
-        body: JSON.stringify(body)
+        body: JSON.stringify({
+            message: 'patient record successfully updated'
+        })
     };
 
     console.info(`response from: ${event.path} statusCode: ${response.statusCode} body: ${response.body}`);
