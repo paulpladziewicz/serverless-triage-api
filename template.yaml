@@ -125,7 +125,7 @@ Resources:
           Type: Api
           Properties:
             Path: /patient/{id}
-            Method: PUT
+            Method: DELETE
 
   PatientTable:
     Type: AWS::Serverless::SimpleTable
