@@ -13,7 +13,7 @@ exports.getPatientByIdHandler = async (event) => {
 
     const params = {
       TableName : tableName,
-      Key: { id: id },
+      Key: { id: id }
     };
     const data = await docClient.get(params).promise();
     const item = data.Item;

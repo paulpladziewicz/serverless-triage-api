@@ -13,9 +13,7 @@ exports.deletePatientHandler = async (event) => {
 
     const params = {
       TableName : tableName,
-      Key: {
-        HashKey: id,
-      }
+      Key: { id: id }
     };
 
     const result = await docClient.delete(params).promise();

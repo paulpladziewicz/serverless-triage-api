@@ -11,6 +11,7 @@ exports.editPatientHandler = async (event) => {
 
     const body = JSON.parse(event.body);
     const id = body.id;
+    const name = body.name;
     const dob = body.dob;
     const complaint = body.complaint;
     const priority = body.priority;
