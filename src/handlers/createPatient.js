@@ -29,9 +29,7 @@ exports.createPatientHandler = async (event) => {
 
   const response = {
     statusCode: 201,
-    body: JSON.stringify({
-      message: 'patient record successfully created'
-    })
+    body: JSON.stringify({ id, name, dob, complaint, priority, room, stage})
   };
 
   console.info(`response from: ${event.path} statusCode: ${response.statusCode} body: ${response.body}`);
