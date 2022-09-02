@@ -133,9 +133,6 @@ Resources:
       PrimaryKey:
         Name: id
         Type: String
-      ProvisionedThroughput:
-        ReadCapacityUnits: 2
-        WriteCapacityUnits: 2
 
 Outputs:
   WebEndpoint:
