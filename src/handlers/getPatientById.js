@@ -20,7 +20,11 @@ exports.getPatientByIdHandler = async (event) => {
 
     const response = {
       statusCode: 200,
-      body: JSON.stringify(item)
+      body: JSON.stringify(item),
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      }
     };
 
     console.info(`response from: ${event.path} statusCode: ${response.statusCode} body: ${response.body}`);

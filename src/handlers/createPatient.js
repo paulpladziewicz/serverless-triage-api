@@ -29,7 +29,11 @@ exports.createPatientHandler = async (event) => {
 
   const response = {
     statusCode: 201,
-    body: JSON.stringify({ id, name, dob, complaint, priority, room, stage})
+    body: JSON.stringify({ id, name, dob, complaint, priority, room, stage}),
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    }
   };
 
   console.info(`response from: ${event.path} statusCode: ${response.statusCode} body: ${response.body}`);

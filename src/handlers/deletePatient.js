@@ -22,7 +22,11 @@ exports.deletePatientHandler = async (event) => {
       statusCode: 200,
       body: JSON.stringify({
         message: 'patient record successfully deleted'
-      })
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      }
     };
 
     console.info(`response from: ${event.path} statusCode: ${response.statusCode} body: ${response.body}`);

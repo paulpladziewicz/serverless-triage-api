@@ -29,7 +29,11 @@ exports.editPatientHandler = async (event) => {
         statusCode: 200,
         body: JSON.stringify({
             message: 'patient record successfully updated'
-        })
+        }),
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        }
     };
 
     console.info(`response from: ${event.path} statusCode: ${response.statusCode} body: ${response.body}`);
