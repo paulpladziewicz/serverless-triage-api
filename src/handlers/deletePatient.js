@@ -24,8 +24,9 @@ exports.deletePatientHandler = async (event) => {
         message: 'patient record successfully deleted'
       }),
       headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Headers" : "*",
+        "Access-Control-Allow-Origin": "*"
       }
     };
 

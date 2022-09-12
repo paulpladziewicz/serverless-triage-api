@@ -31,8 +31,9 @@ exports.editPatientHandler = async (event) => {
             message: 'patient record successfully updated'
         }),
         headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Headers" : "*",
+            "Access-Control-Allow-Origin": "*"
         }
     };
 

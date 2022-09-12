@@ -31,8 +31,9 @@ exports.createPatientHandler = async (event) => {
     statusCode: 201,
     body: JSON.stringify({ id, name, dob, complaint, priority, room, stage}),
     headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*'
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Headers" : "*",
+      "Access-Control-Allow-Origin": "*"
     }
   };
 
