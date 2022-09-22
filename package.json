@@ -1,7 +1,7 @@
 {
-    "name": "delete-test-01",
-    "description": "delete-test-01-description",
-    "version": "0.0.1",
+    "name": "serverless-triage-api",
+    "description": "CRUD functionality for a hypothetical patient triage system.",
+    "version": "1.0.0",
     "private": true,
     "dependencies": {
         "aws-sdk": "^2.799.0",

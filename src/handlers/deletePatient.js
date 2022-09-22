@@ -16,7 +16,7 @@ exports.deletePatientHandler = async (event) => {
       Key: { id: id }
     };
 
-    const result = await docClient.delete(params).promise();
+    await docClient.delete(params).promise();
 
     const response = {
       statusCode: 200,

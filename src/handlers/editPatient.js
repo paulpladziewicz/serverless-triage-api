@@ -23,7 +23,7 @@ exports.editPatientHandler = async (event) => {
         Item: { id, name, dob, complaint, priority, room, stage}
     };
 
-    const result = await docClient.put(params).promise();
+    await docClient.put(params).promise();
 
     const response = {
         statusCode: 200,

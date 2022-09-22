@@ -1,4 +1,0 @@
-{
-    "httpMethod": "PUT",
-    "body": "{\"stage\": \"treating\",\"complaint\": \"Chest pain which radiates down left arm. Pain is rated 7 out of 10. Breathing rate is elevated.\",\"dob\": \"01/25/1951\",\"priority\": 1,\"id\": \"c515617c-6f46-414f-8bf1-1f3f79053adb\",\"name\": \"Alisa Henson\",\"room\": 103}"
-}
