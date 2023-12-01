@@ -1,5 +1,10 @@
-# Serverless Triage API
+# Serverless Triage API with AWS SAM
 
-Reach out for the base url and the api documentation.
+An example CRUD API project for those learning how to get started with AWS Serverless Application Model.
+
+Create, Read, Update, and Delete functionality for a hypothetical patient triage service.
+
+Creates an AWS API Gateway, DynamoDB table, and the Lambda functions to support each CRUD operation.
+
 
 

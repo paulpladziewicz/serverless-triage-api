@@ -1,4 +1,4 @@
-exports.corsOptionsHandler = async (event) => {
+exports.corsHandler = async (event) => {
   if (event.httpMethod !== 'OPTIONS') {
     throw new Error(`function only accepts OPTIONS method, you tried: ${event.httpMethod}`);
   }

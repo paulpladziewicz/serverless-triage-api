@@ -125,10 +125,10 @@ Resources:
             Path: /patient/{id}
             Method: DELETE
 
-  corsOptionsFunction:
+  corsFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: src/handlers/corsOptions.corsOptionsHandler
+      Handler: src/handlers/cors.corsHandler
       Runtime: nodejs16.x
       Architectures:
         - x86_64

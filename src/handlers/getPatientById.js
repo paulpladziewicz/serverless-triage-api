@@ -1,13 +1,12 @@
 const dynamodb = require('aws-sdk/clients/dynamodb');
-const docClient = new dynamodb.DocumentClient();
 
+const docClient = new dynamodb.DocumentClient();
 const tableName = process.env.PATIENT_TABLE;
 
 exports.getPatientByIdHandler = async (event) => {
     if (event.httpMethod !== 'GET') {
       throw new Error(`getMethod only accept GET method, you tried: ${event.httpMethod}`);
     }
-    console.info('received:', event);
 
     const id = event.pathParameters.id;
 
@@ -18,7 +17,7 @@ exports.getPatientByIdHandler = async (event) => {
     const data = await docClient.get(params).promise();
     const item = data.Item;
 
-    const response = {
+    return {
       statusCode: 200,
       body: JSON.stringify(item),
       headers: {
@@ -26,7 +25,4 @@ exports.getPatientByIdHandler = async (event) => {
         'Access-Control-Allow-Origin': '*'
       }
     };
-
-    console.info(`response from: ${event.path} statusCode: ${response.statusCode} body: ${response.body}`);
-    return response;
 }
